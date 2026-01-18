@@ -127,13 +127,17 @@ function announce(message) {
  * - R: Reset timer
  */
 document.addEventListener("keydown", (e) => {
-  // Space bar: start/pause (only when not focused on input)
-  if (e.code === "Space" && e.target !== document.body) {
+  const target = e.target;
+  const tag = target && target.tagName ? target.tagName.toLowerCase() : "";
+  const isTypingField = tag === "input" || tag === "textarea" || (target && target.isContentEditable);
+
+  // Space bar: start/pause (avoid interfering with typing in inputs/textareas)
+  if (e.code === "Space" && !isTypingField) {
     e.preventDefault();
     startTimer();
   }
-  // R key: reset (works anytime)
-  if (e.code === "KeyR" || e.key === "r") {
+  // R key: reset (avoid interfering with typing)
+  if ((e.code === "KeyR" || (typeof e.key === "string" && e.key.toLowerCase() === "r")) && !isTypingField) {
     e.preventDefault();
     resetTimer();
   }
