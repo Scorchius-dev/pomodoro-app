@@ -77,12 +77,11 @@ function updateButtonLabel() {
         ) || 0;
     }
 
-    if (state.isRunning) {
-        label = "Pause the timer";
-    } else {
-        label = "Start the " + minutes +
-            "-minute work session";
-    }
+    label = (
+        state.isRunning
+        ? "Pause the timer"
+        : "Start the " + minutes + "-minute work session"
+    );
 
     elements.startBtn.setAttribute("aria-label", label);
 }
@@ -171,20 +170,30 @@ function toggleTheme() {
     root = document.documentElement;
     isLight = root.classList.toggle("theme-light");
 
-    if (isLight) {
-        mode = "Dark Mode";
-        ariaLabel = "Switch to dark mode";
-    } else {
-        mode = "Light Mode";
-        ariaLabel = "Switch to light mode";
-    }
+    mode = (
+        isLight
+        ? "Dark Mode"
+        : "Light Mode"
+    );
+    ariaLabel = (
+        isLight
+        ? "Switch to dark mode"
+        : "Switch to light mode"
+    );
 
     if (elements.themeBtn) {
         elements.themeBtn.textContent = mode;
         elements.themeBtn.setAttribute("aria-label", ariaLabel);
     }
 
-    localStorage.setItem("theme", isLight ? "light" : "dark");
+    localStorage.setItem(
+        "theme",
+        (
+            isLight
+            ? "light"
+            : "dark"
+        )
+    );
 
     if (isLight) {
         announce("Light mode enabled.");
