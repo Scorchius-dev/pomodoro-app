@@ -145,9 +145,18 @@ pomodoro-app/
 ## ✅ Validation & Testing
 
 ### Code Quality
+
+#### JavaScript Validation
+![JSHint Validation](https://github.com/Scorchius-dev/pomodoro-app/blob/main/screenshots/javascript-lint.png)
 - ✅ **JavaScript**:  Passed JSHint validation (ES6 mode) with 0 errors
+
+#### HTML Validation
+![W3C HTML Validation](https://github.com/Scorchius-dev/pomodoro-app/blob/main/screenshots/html-validation.png)
 - ✅ **HTML**: Passed W3C HTML Validator with 0 errors
-- ✅ **CSS**: Passed W3C CSS Validator (Jigsaw) with 0 errors
+
+#### CSS Validation
+![W3C CSS Validation](https://github.com/Scorchius-dev/pomodoro-app/blob/main/screenshots/css-validation.png)
+- ✅ **CSS**:  Passed W3C CSS Validator (Jigsaw) with 0 errors
 
 ### Browser Testing
 - ✅ Chrome (latest)
@@ -164,6 +173,7 @@ pomodoro-app/
 - ✅ Keyboard navigation
 - ✅ Screen reader compatibility (NVDA, VoiceOver)
 - ✅ Color contrast (WCAG AA compliant)
+- ![!WCAG Acessibility](https://github.com/Scorchius-dev/pomodoro-app/blob/main/screenshots/accessibility.png)
 
 ---
 
@@ -302,6 +312,7 @@ This project is deployed using GitHub Pages.
 ---
 
 **Made with ❤️ and ☕ using the Pomodoro Technique**
+
 
 
 
