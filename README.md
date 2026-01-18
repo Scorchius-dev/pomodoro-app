@@ -173,7 +173,7 @@ pomodoro-app/
 - ✅ Keyboard navigation
 - ✅ Screen reader compatibility (NVDA, VoiceOver)
 - ✅ Color contrast (WCAG AA compliant)
-- ![!WCAG Acessibility](https://github.com/Scorchius-dev/pomodoro-app/blob/main/screenshots/accessibility.png)
+- ![!WCAG Accessibility](https://github.com/Scorchius-dev/pomodoro-app/blob/main/screenshots/accessibility.png)
 
 ---
 
@@ -316,6 +316,7 @@ This project is deployed using GitHub Pages.
 ---
 
 **Made with ❤️ and ☕ using the Pomodoro Technique**
+
 
 
 
