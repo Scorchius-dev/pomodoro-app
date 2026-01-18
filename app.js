@@ -1,4 +1,4 @@
-/* eslint-env browser, es2022 */
+/* eslint-env browser */
 /* global localStorage, clearInterval, setInterval, parseInt */
 
 // ========== DOM Element References ==========
