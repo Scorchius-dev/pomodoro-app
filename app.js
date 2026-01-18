@@ -111,12 +111,13 @@ function toggleTheme() {
  * @param {string} message - Message to announce
  */
 function announce(message) {
-  const liveRegion = document.querySelector(".app-counter-box");
-  if (liveRegion) {
-    liveRegion.setAttribute("aria-live", "assertive");
+  const messageDiv = document.querySelector(".app-message");
+  if (messageDiv) {
+    messageDiv.textContent = message;
+    // Reset to default message after 3 seconds
     setTimeout(() => {
-      liveRegion.setAttribute("aria-live", "off");
-    }, 1000);
+      messageDiv.textContent = "Press start to begin";
+    }, 3000);
   }
 }
 
