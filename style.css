@@ -1,16 +1,33 @@
+:root {
+  --text-color: #d8e9ef;
+  --bg-gradient-start: #025159;
+  --bg-gradient-end: #733b36;
+  --circle-color: #bf5239;
+  --circle-mask-color: #e85a71;
+  --button-hover-color: #90c0d1;
+}
+
 html {
   font-family: "Fira Sans", sans-serif;
   font-size: 20px;
-  letter-spacing: 0.8px;
   min-height: 100vh;
-  color: #d8e9ef;
-  background-image: linear-gradient(-20deg, #025159 0%, #733b36 100%);
+  color: var(--text-color);
+  background-image: linear-gradient(-20deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
   background-size: cover;
+}
+
+html.theme-light {
+  --text-color: #1f2937;
+  --bg-gradient-start: #f5f7fa;
+  --bg-gradient-end: #e2e8f0;
+  --circle-color: #4c6ef5;
+  --circle-mask-color: #74c0fc;
+  --button-hover-color: #334155;
 }
 
 h1 {
   margin: 0 auto 10px auto;
-  color: #d8e9ef;
+  color: var(--text-color);
 }
 
 p {
@@ -29,6 +46,11 @@ p {
   text-align: center;
   border-radius: 5px;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
 }
 
 .app-circle {
@@ -36,10 +58,14 @@ p {
   margin: 0 auto;
   width: 200px;
   height: 200px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
 }
 
 .circle-shape {
   pointer-events: none;
+  z-index: 0;
 }
 
 .semi-circle {
@@ -72,33 +98,34 @@ p {
 }
 
 .circle {
-  border-color: #bf5239;
+  border-color: var(--circle-color);
 }
 
 .circle-mask {
-  border-color: #e85a71;
+  border-color: var(--circle-mask-color);
 }
 
 .app-counter-box {
   font-family: "Droid Sans Mono", monospace;
-  font-size: 250%;
-  position: relative;
-  top: 50px;
-  color: #d8e9ef;
+  font-size: 2.2rem;
+  color: var(--text-color);
+  z-index: 2;
 }
 
 button {
-  position: relative;
-  top: 50px;
   font-size: 80%;
   text-transform: uppercase;
-  letter-spacing: 1px;
   border: none;
   background: none;
   outline: none;
-  color: #d8e9ef;
+  color: var(--text-color);
+}
+
+.button-row {
+  display: flex;
+  gap: 12px;
 }
 
 button:hover {
-  color: #90c0d1;
+  color: var(--button-hover-color);
 }

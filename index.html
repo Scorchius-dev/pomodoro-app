@@ -14,22 +14,26 @@
 </head>
 
 <body>
-    <div class="app-container"></div>
+  <div class="app-container">
     <h1>pomodoro</h1>
-  <div class="app-message">press start to begin</div>
-  <div class="app-circle">
-    <div class="circle-shape">
-      <div class="semi-circle right-side circle-mask"></div>
-      <div class="semi-circle right-side circle"></div>
-      <div class="semi-circle left-side circle-mask"></div>
-      <div class="semi-circle left-side circle"></div>
+    <div class="app-message">press start to begin</div>
+    <div class="app-circle">
+      <div class="circle-shape">
+        <div class="semi-circle right-side circle-mask"></div>
+        <div class="semi-circle right-side circle"></div>
+        <div class="semi-circle left-side circle-mask"></div>
+        <div class="semi-circle left-side circle"></div>
+      </div>
+      <div class="app-counter-box">
+        <p><span class="minutes">25</span>:<span class="seconds">00</span></p>
+      </div>
     </div>
-    <div class="app-counter-box">
-      <p><span class="minutes">25</span>:<span class="seconds">00</span></p>
+    <div class="button-row">
+      <button class="btn-start" aria-label="Start timer">start</button>
+      <button class="btn-reset" aria-label="Reset timer">reset</button>
     </div>
-    <button class="btn-start">start</button>
+    <button class="btn-theme" aria-label="Toggle light/dark mode">light mode</button>
   </div>
-</div>
 </body>
 <script src="./app.js"></script>
 
