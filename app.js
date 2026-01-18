@@ -1,6 +1,4 @@
- 
-
-// Pomodoro Timer Application
+ // Pomodoro Timer Application
 /*global document, localStorage, window, clearInterval, setInterval,
 setTimeout */
 
@@ -307,6 +305,3 @@ if (document.readyState === "loading") {
 } else {
     init();
 }
-
-  
-
