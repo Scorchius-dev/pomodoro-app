@@ -6,7 +6,7 @@ const elements = {
   minuteDiv: document.querySelector(".minutes"),
   secondDiv: document.querySelector(".seconds"),
   circleDisplay: document.querySelector(".app-circle"),
-  messageDiv: document.querySelector(".app-message")
+  messageDiv: document.querySelector(".app-message"),
 };
 
 // ========== Application State ==========
@@ -14,7 +14,7 @@ const state = {
   intervalId: null,
   isRunning: false,
   totalSeconds: 0,
-  DEFAULT_MINUTES: 25
+  DEFAULT_MINUTES: 25,
 };
 
 // Initialize default minutes from DOM or fallback
@@ -30,12 +30,12 @@ const updateDisplay = (minutes, seconds) => {
   if (!elements.minuteDiv || !elements.secondDiv) return;
   
   elements.minuteDiv.textContent = String(minutes);
-  elements.secondDiv.textContent = seconds.toString().padStart(2, '0');
+  elements.secondDiv.textContent = seconds.toString().padStart(2, "0");
   
   // Update ARIA label for accessibility
   elements.circleDisplay?.setAttribute(
     "aria-label", 
-    `Pomodoro timer showing ${minutes} minutes and ${seconds} seconds`
+    `Pomodoro timer showing ${minutes} minutes and ${seconds} seconds`,
   );
 };
 
