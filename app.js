@@ -3,21 +3,21 @@
 
 // ========== DOM Element References ==========
 const elements = {
-  startBtn: document.querySelector(".btn-start"),
-  resetBtn: document.querySelector(".btn-reset"),
-  themeBtn: document.querySelector(".btn-theme"),
-  minuteDiv: document.querySelector(".minutes"),
-  secondDiv: document.querySelector(".seconds"),
   circleDisplay: document.querySelector(".app-circle"),
   messageDiv: document.querySelector(".app-message"),
+  minuteDiv: document.querySelector(".minutes"),
+  resetBtn: document.querySelector(".btn-reset"),
+  secondDiv: document.querySelector(".seconds"),
+  startBtn: document.querySelector(".btn-start"),
+  themeBtn: document.querySelector(".btn-theme"),
 };
 
 // ========== Application State ==========
 const state = {
+  DEFAULT_MINUTES: 25,
   intervalId: null,
   isRunning: false,
   totalSeconds: 0,
-  DEFAULT_MINUTES: 25,
 };
 
 // Initialize default minutes from DOM or fallback
@@ -38,7 +38,7 @@ const updateDisplay = (minutes, seconds) => {
   // Update ARIA label for accessibility
   elements.circleDisplay?.setAttribute(
     "aria-label", 
-    `Pomodoro timer showing ${minutes} minutes and ${seconds} seconds`,
+    `Pomodoro timer showing ${minutes} minutes and ${seconds} seconds`
   );
 };
 
