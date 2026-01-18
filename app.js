@@ -1,3 +1,6 @@
+/* eslint-env browser, es2022 */
+/* global localStorage, clearInterval, setInterval, parseInt */
+
 // ========== DOM Element References ==========
 const elements = {
   startBtn: document.querySelector(".btn-start"),
