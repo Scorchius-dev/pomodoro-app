@@ -1,3 +1,4 @@
+/* ========== CSS VARIABLES (Theme Colors & Spacing) ========== */
 :root {
   --text-color: #d8e9ef;
   --bg-gradient-start: #025159;
@@ -9,16 +10,20 @@
   --transition-speed: 150ms ease-in-out;
 }
 
+/* ========== ROOT & GLOBAL STYLES ========== */
 html {
   font-family: "Fira Sans", sans-serif;
+  /* Fluid font size: scales from 16px to 20px based on viewport */
   font-size: clamp(16px, 2.5vw, 20px);
   min-height: 100vh;
   color: var(--text-color);
+  /* Gradient background for dark mode (default) */
   background-image: linear-gradient(-20deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
   background-size: cover;
   background-attachment: fixed;
 }
 
+/* Light mode theme overrides */
 html.theme-light {
   --text-color: #1f2937;
   --bg-gradient-start: #f5f7fa;
@@ -37,7 +42,8 @@ body {
   min-height: 100vh;
 }
 
-/* Skip to content link for keyboard navigation */
+/* ========== KEYBOARD ACCESSIBILITY ========== */
+/* Skip to content link - hidden by default, visible on focus */
 .skip-to-content {
   position: absolute;
   top: -40px;
@@ -60,9 +66,11 @@ body {
   }
 }
 
+/* ========== TYPOGRAPHY ========== */
 h1 {
   margin: 0 auto 0.5rem auto;
   color: var(--text-color);
+  /* Fluid heading size: scales responsively */
   font-size: clamp(1.75rem, 5vw, 2.5rem);
   letter-spacing: -0.02em;
 }
@@ -85,6 +93,7 @@ p {
   color: var(--text-color);
 }
 
+/* ========== MAIN CONTAINER ========== */
 .app-container {
   width: 100%;
   max-width: 320px;
@@ -99,6 +108,7 @@ p {
   gap: 1.5rem;
 }
 
+/* Tablet/Desktop layout adjustments */
 @media (min-width: 640px) {
   .app-container {
     max-width: 400px;
@@ -108,9 +118,11 @@ p {
   }
 }
 
+/* ========== CIRCULAR TIMER DISPLAY ========== */
 .app-circle {
   position: relative;
   margin: 0 auto;
+  /* Responsive circle size: scales with viewport */
   width: clamp(140px, 50vw, 200px);
   aspect-ratio: 1;
   display: grid;
@@ -125,14 +137,17 @@ p {
   height: 100%;
 }
 
+/* Semi-circle components (halves of the progress ring) */
 .semi-circle {
   position: absolute;
   width: 50%;
   height: 100%;
   box-sizing: border-box;
+  /* Responsive border width */
   border: clamp(4px, 3vw, 6px) solid;
 }
 
+/* Left half of circle */
 .left-side {
   top: 0;
   left: 0;
@@ -144,6 +159,7 @@ p {
   z-index: 1;
 }
 
+/* Right half of circle */
 .right-side {
   top: 0;
   left: 50%;
@@ -154,6 +170,7 @@ p {
   border-left: none;
 }
 
+/* Circle border colors */
 .circle {
   border-color: var(--circle-color);
 }
@@ -162,12 +179,15 @@ p {
   border-color: var(--circle-mask-color);
 }
 
+/* ========== TIMER COUNTER DISPLAY ========== */
 .app-counter-box {
   font-family: "Droid Sans Mono", monospace;
+  /* Responsive counter size: scales with circle */
   font-size: clamp(1.8rem, 8vw, 3.2rem);
   color: var(--text-color);
   z-index: 2;
   position: absolute;
+  /* Center text perfectly in circle */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -176,6 +196,7 @@ p {
   font-weight: 600;
 }
 
+/* ========== BUTTON STYLES ========== */
 button {
   font-size: clamp(0.75rem, 2vw, 0.9rem);
   text-transform: uppercase;
@@ -185,6 +206,7 @@ button {
   color: var(--text-color);
   cursor: pointer;
   padding: 0.5rem 1rem;
+  /* Touch-friendly minimum size (WCAG AA) */
   min-height: 44px;
   min-width: 44px;
   display: flex;
@@ -196,19 +218,23 @@ button {
   position: relative;
 }
 
+/* Hover state */
 button:hover {
   color: var(--button-hover-color);
 }
 
+/* Focus state for keyboard navigation */
 button:focus {
   outline: 2px solid var(--focus-outline);
   outline-offset: 2px;
 }
 
+/* Active press effect */
 button:active {
   transform: scale(0.98);
 }
 
+/* ========== BUTTON LAYOUT ========== */
 .button-row {
   display: flex;
   gap: 1rem;
@@ -216,11 +242,13 @@ button:active {
   justify-content: center;
 }
 
+/* Theme button takes full width */
 .btn-theme {
   width: 100%;
   margin-top: 0.5rem;
 }
 
+/* ========== FOOTER ========== */
 .app-footer {
   margin-top: auto;
   padding: 1rem;
@@ -230,6 +258,7 @@ button:active {
   opacity: 0.8;
 }
 
+/* Keyboard shortcut key styling */
 kbd {
   background-color: rgba(255, 255, 255, 0.1);
   border: 1px solid currentColor;
@@ -239,9 +268,11 @@ kbd {
   font-size: 0.9em;
 }
 
+/* ========== MOBILE OPTIMIZATIONS ========== */
 @media (max-width: 639px) {
   button {
     padding: 0.75rem 1.25rem;
+    /* Larger touch targets on mobile */
     min-height: 48px;
     min-width: 48px;
   }
@@ -251,6 +282,8 @@ kbd {
   }
 }
 
+/* ========== ACCESSIBILITY: REDUCE MOTION ========== */
+/* Respects user's motion preferences (e.g., if they have vestibular disorders) */
 @media (prefers-reduced-motion: reduce) {
   button {
     transition: none;

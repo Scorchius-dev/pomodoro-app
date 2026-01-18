@@ -1,48 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- ========== HEAD SECTION ========== -->
 <head>
+    <!-- Character encoding and viewport for responsive design -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO and browser metadata -->
     <meta name="description" content="A Pomodoro timer app to boost productivity with customizable work intervals.">
     <meta name="theme-color" content="#025159">
     <title>Pomodoro Timer - Boost Your Productivity</title>
+    
+    <!-- Google Fonts preconnection for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
         href="https://fonts.googleapis.com/css2?family=EG+Garamond:wght@400;500;600;700&family=Fira+Sans:wght@400;500;600;700&display=swap"
         rel="stylesheet" />
+    
+    <!-- Main stylesheet -->
     <link rel="stylesheet" href="./style.css" />
 </head>
 
+<!-- ========== BODY SECTION ========== -->
 <body>
+  <!-- Skip to main content link for keyboard accessibility -->
   <a href="#main-timer" class="skip-to-content">Skip to main timer</a>
+  
+  <!-- Main application container -->
   <main class="app-container" id="main-timer">
+    
+    <!-- Header with title and status message -->
     <header class="app-header">
       <h1>Pomodoro</h1>
+      <!-- Live region for dynamic status updates (accessible to screen readers) -->
       <p class="app-message" aria-live="polite" aria-atomic="true">Press start to begin</p>
     </header>
+    
+    <!-- Circular timer display -->
     <div class="app-circle" role="img" aria-label="Pomodoro timer showing 25 minutes and 0 seconds">
+      <!-- Semi-circle shapes forming the visual progress ring -->
       <div class="circle-shape" aria-hidden="true">
         <div class="semi-circle right-side circle-mask"></div>
         <div class="semi-circle right-side circle"></div>
         <div class="semi-circle left-side circle-mask"></div>
         <div class="semi-circle left-side circle"></div>
       </div>
+      
+      <!-- Timer display (minutes : seconds) -->
       <div class="app-counter-box" aria-live="assertive" aria-atomic="true">
         <p><span class="minutes">25</span>:<span class="seconds">00</span></p>
       </div>
     </div>
+    
+    <!-- Start and Reset buttons in a row -->
     <div class="button-row">
-      <button class="btn-start" aria-label="Start the 25-minute work session">Start</button>
+      <button class="btn-start" aria-label="Start the 25-minute work session">Start/Pause</button>
       <button class="btn-reset" aria-label="Reset timer to 25 minutes">Reset</button>
     </div>
+    
+    <!-- Theme toggle button (light/dark mode) -->
     <button class="btn-theme" aria-label="Toggle between light and dark mode">Light Mode</button>
   </main>
+  
+  <!-- Footer with keyboard shortcuts info -->
   <footer class="app-footer" role="contentinfo">
     <p>Keyboard shortcuts: <kbd>Space</kbd> to start/pause, <kbd>R</kbd> to reset.</p>
   </footer>
 </body>
+
+<!-- Main JavaScript application logic -->
 <script src="./app.js" defer></script>
 
 </html>
