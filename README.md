@@ -291,16 +291,17 @@ This project is deployed using GitHub Pages.
 ## 📸 Screenshots
 
 ### Dark Mode
-![Dark Mode Screenshot](screenshot-dark.png)
+![Dark Mode Screenshot](https://github.com/Scorchius-dev/pomodoro-app/blob/main/screenshots/screenshot.png)
 
 ### Light Mode
-![Light Mode Screenshot](screenshot-light.png)
+![Light Mode Screenshot](https://github.com/Scorchius-dev/pomodoro-app/blob/main/screenshots/screenshot-light.png)
 
 ### Mobile View
-![Mobile Screenshot](screenshot-mobile.png)
+![Mobile Screenshot](https://github.com/Scorchius-dev/pomodoro-app/blob/main/screenshots/screenshot-mobile.png)
 
 ---
 
 **Made with ❤️ and ☕ using the Pomodoro Technique**
+
 
 
