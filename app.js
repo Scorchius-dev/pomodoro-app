@@ -165,11 +165,9 @@ function toggleTheme() {
         elements.themeBtn.setAttribute("aria-label", ariaLabel);
     }
 
-    localStorage.setItem("theme", (
-        isLight
-    ? "light"
-    : "dark"
-    ));    if (isLight) {
+    localStorage.setItem("theme", (isLight ? "light" : "dark"));
+
+    if (isLight) {
         announce("Light mode enabled.");
     } else {
         announce("Dark mode enabled.");
