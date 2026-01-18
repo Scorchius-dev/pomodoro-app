@@ -2,7 +2,6 @@
 /*global document, localStorage, window, clearInterval, setInterval,
 setTimeout */
 
-// DOM Element References
 var elements = {
     circleDisplay: document.querySelector(".app-circle"),
     messageDiv: document.querySelector(".app-message"),
@@ -13,7 +12,6 @@ var elements = {
     themeBtn: document.querySelector(".btn-theme")
 };
 
-// Application State
 var state = {
     DEFAULT_MINUTES: 25,
     intervalId: null,
@@ -21,18 +19,18 @@ var state = {
     totalSeconds: 0
 };
 
-// Initialize default minutes from DOM or fallback
-if (elements.minuteDiv && elements.minuteDiv.textContent) {
-    state.DEFAULT_MINUTES = parseInt(
-        elements.minuteDiv.textContent,
-        10
-    );
-}
-if (!state.DEFAULT_MINUTES) {
-    state.DEFAULT_MINUTES = 25;
+function initDefaultMinutes() {
+    if (elements.minuteDiv && elements.minuteDiv.textContent) {
+        state.DEFAULT_MINUTES = parseInt(
+            elements.minuteDiv.textContent,
+            10
+        );
+    }
+    if (!state.DEFAULT_MINUTES) {
+        state.DEFAULT_MINUTES = 25;
+    }
 }
 
-// Updates the timer display and ARIA label
 function updateDisplay(minutes, seconds) {
     var labelText;
     var secondsText;
@@ -49,16 +47,12 @@ function updateDisplay(minutes, seconds) {
     elements.secondDiv.textContent = secondsText;
 
     if (elements.circleDisplay) {
-        labelText = "Pomodoro timer showing " + minutes +
-            " minutes and " + seconds + " seconds";
-        elements.circleDisplay.setAttribute(
-            "aria-label",
-            labelText
-        );
+        labelText = "Pomodoro timer showing " + minutes
+            + " minutes and " + seconds + " seconds";
+        elements.circleDisplay.setAttribute("aria-label", labelText);
     }
 }
 
-// Updates the start button label based on timer state
 function updateButtonLabel() {
     var minutes;
     var label;
@@ -69,22 +63,18 @@ function updateButtonLabel() {
 
     minutes = 0;
     if (elements.minuteDiv && elements.minuteDiv.textContent) {
-        minutes = parseInt(
-            elements.minuteDiv.textContent,
-            10
-        ) || 0;
+        minutes = parseInt(elements.minuteDiv.textContent, 10) || 0;
     }
 
-    label = (
-        state.isRunning
-        ? "Pause the timer"
-        : "Start the " + minutes + "-minute work session"
-    );
+    if (state.isRunning) {
+        label = "Pause the timer";
+    } else {
+        label = "Start the " + minutes + "-minute work session";
+    }
 
     elements.startBtn.setAttribute("aria-label", label);
 }
 
-// Starts the timer or pauses it if already running
 function startTimer() {
     var currentMinutes;
     var currentSeconds;
@@ -99,8 +89,7 @@ function startTimer() {
         updateButtonLabel();
 
         currentMinutes = state.DEFAULT_MINUTES;
-        if (elements.minuteDiv &&
-                elements.minuteDiv.textContent) {
+        if (elements.minuteDiv && elements.minuteDiv.textContent) {
             currentMinutes = parseInt(
                 elements.minuteDiv.textContent,
                 10
@@ -108,16 +97,14 @@ function startTimer() {
         }
 
         currentSeconds = 0;
-        if (elements.secondDiv &&
-                elements.secondDiv.textContent) {
+        if (elements.secondDiv && elements.secondDiv.textContent) {
             currentSeconds = parseInt(
                 elements.secondDiv.textContent,
                 10
             ) || 0;
         }
 
-        state.totalSeconds = currentMinutes * 60 +
-            currentSeconds;
+        state.totalSeconds = currentMinutes * 60 + currentSeconds;
 
         state.intervalId = setInterval(function () {
             var minutesLeft;
@@ -138,15 +125,13 @@ function startTimer() {
                 state.isRunning = false;
                 updateButtonLabel();
                 announce(
-                    "Timer complete! 25 minutes" +
-                    " of focused work done."
+                    "Timer complete! 25 minutes of focused work done."
                 );
             }
         }, 1000);
     }
 }
 
-// Resets the timer back to default minutes
 function resetTimer() {
     clearInterval(state.intervalId);
     state.intervalId = null;
@@ -158,7 +143,6 @@ function resetTimer() {
     announce("Timer reset to 25 minutes.");
 }
 
-// Toggles between light and dark mode
 function toggleTheme() {
     var root;
     var isLight;
@@ -168,30 +152,24 @@ function toggleTheme() {
     root = document.documentElement;
     isLight = root.classList.toggle("theme-light");
 
-    mode = (
-        isLight
-        ? "Dark Mode"
-        : "Light Mode"
-    );
-    ariaLabel = (
-        isLight
-        ? "Switch to dark mode"
-        : "Switch to light mode"
-    );
+    if (isLight) {
+        mode = "Dark Mode";
+        ariaLabel = "Switch to dark mode";
+    } else {
+        mode = "Light Mode";
+        ariaLabel = "Switch to light mode";
+    }
 
     if (elements.themeBtn) {
         elements.themeBtn.textContent = mode;
         elements.themeBtn.setAttribute("aria-label", ariaLabel);
     }
 
-    localStorage.setItem(
-        "theme",
-        (
-            isLight
-            ? "light"
-            : "dark"
-        )
-    );
+    localStorage.setItem("theme", (
+        isLight
+        ? "light"
+        : "dark"
+    ));
 
     if (isLight) {
         announce("Light mode enabled.");
@@ -200,7 +178,6 @@ function toggleTheme() {
     }
 }
 
-// Makes announcements to screen readers
 function announce(message) {
     if (!elements.messageDiv) {
         return;
@@ -210,13 +187,11 @@ function announce(message) {
 
     setTimeout(function () {
         if (elements.messageDiv) {
-            elements.messageDiv.textContent =
-                "Press start to begin";
+            elements.messageDiv.textContent = "Press start to begin";
         }
     }, 3000);
 }
 
-// Handles keyboard shortcuts
 function handleKeyboardShortcut(e) {
     var target;
     var code;
@@ -243,16 +218,15 @@ function handleKeyboardShortcut(e) {
         e.preventDefault();
         startTimer();
     } else if (!isTypingField) {
-        if (code === "KeyR" ||
-                (typeof key === "string" &&
-                key.toLowerCase() === "r")) {
+        if (code === "KeyR" || (
+                typeof key === "string" && key.toLowerCase() === "r"
+            )) {
             e.preventDefault();
             resetTimer();
         }
     }
 }
 
-// Loads saved theme preference or uses system preference
 function initTheme() {
     var savedTheme;
     var prefersDark;
@@ -263,13 +237,12 @@ function initTheme() {
         "(prefers-color-scheme: dark)"
     ).matches;
 
-    isLight = savedTheme === "light" ||
-        (savedTheme !== "dark" && !prefersDark);
+    isLight = savedTheme === "light" || (
+        savedTheme !== "dark" && !prefersDark
+    );
 
     if (isLight) {
-        document.documentElement.classList.add(
-            "theme-light"
-        );
+        document.documentElement.classList.add("theme-light");
         if (elements.themeBtn) {
             elements.themeBtn.textContent = "Dark Mode";
         }
@@ -280,13 +253,12 @@ function initTheme() {
     }
 }
 
-// Initializes the application
 function init() {
+    initDefaultMinutes();
     initTheme();
     updateButtonLabel();
 }
 
-// Event Listeners
 if (elements.startBtn) {
     elements.startBtn.addEventListener("click", startTimer);
 }
@@ -299,7 +271,6 @@ if (elements.themeBtn) {
 
 document.addEventListener("keydown", handleKeyboardShortcut);
 
-// Run initialization when DOM is ready
 if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
 } else {
