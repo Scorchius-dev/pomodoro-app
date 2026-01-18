@@ -309,9 +309,14 @@ This project is deployed using GitHub Pages.
 ### Mobile View
 ![Mobile Screenshot](https://github.com/Scorchius-dev/pomodoro-app/blob/main/screenshots/screenshot-mobile.png)
 
+### Wireframe
+![Wireframe Screenshot](https://github.com/Scorchius-dev/pomodoro-app/blob/main/screenshots/pomodoro-wireframe.png)
+
+
 ---
 
 **Made with ❤️ and ☕ using the Pomodoro Technique**
+
 
 
 
