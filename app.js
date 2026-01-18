@@ -1,5 +1,4 @@
-/* eslint-env browser */
-/* global localStorage, clearInterval, setInterval, parseInt */
+ 
 
 // ========== DOM Element References ==========
 const elements = {
@@ -36,10 +35,11 @@ const updateDisplay = (minutes, seconds) => {
   elements.secondDiv.textContent = seconds.toString().padStart(2, "0");
   
   // Update ARIA label for accessibility
-  elements.circleDisplay?.setAttribute(
-    "aria-label", 
-    `Pomodoro timer showing ${minutes} minutes and ${seconds} seconds`
-  );
+  if (elements.circleDisplay) {
+    const labelText = "Pomodoro timer showing " + minutes +
+      " minutes and " + seconds + " seconds";
+    elements.circleDisplay.setAttribute("aria-label", labelText);
+  }
 };
 
 // ========== Button Label Update ==========
@@ -161,22 +161,24 @@ const announce = (message) => {
  * - R: Reset timer
  */
 const handleKeyboardShortcut = (e) => {
-  const { target, code, key } = e;
-  const tagName = target?.tagName?.toLowerCase() ?? "";
-  const isTypingField = 
-    tagName === "input" || 
-    tagName === "textarea" || 
-    target?.isContentEditable;
+  const target = e.target;
+  const code = e.code;
+  const key = e.key;
+  const tagName = target && target.tagName ? target.tagName.toLowerCase() : "";
+  const isTypingField = (
+    tagName === "input" ||
+    tagName === "textarea" ||
+    (target && target.isContentEditable)
+  );
 
   // Space bar: start/pause (avoid interfering with typing in inputs/textareas)
   if (code === "Space" && !isTypingField) {
     e.preventDefault();
     startTimer();
-    return;
-  }
-  
-  // R key: reset (avoid interfering with typing)
-  if ((code === "KeyR" || key?.toLowerCase() === "r") && !isTypingField) {
+  } else if (
+    (code === "KeyR" || (typeof key === "string" && key.toLowerCase() === "r")) &&
+    !isTypingField
+  ) {
     e.preventDefault();
     resetTimer();
   }
