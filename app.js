@@ -48,7 +48,7 @@ function updateDisplay(minutes, seconds) {
 
     if (elements.circleDisplay) {
         labelText = "Pomodoro timer showing " + minutes
-            + " minutes and " + seconds + " seconds";
+        + " minutes and " + seconds + " seconds";
         elements.circleDisplay.setAttribute("aria-label", labelText);
     }
 }
@@ -167,11 +167,9 @@ function toggleTheme() {
 
     localStorage.setItem("theme", (
         isLight
-        ? "light"
-        : "dark"
-    ));
-
-    if (isLight) {
+    ? "light"
+    : "dark"
+    ));    if (isLight) {
         announce("Light mode enabled.");
     } else {
         announce("Dark mode enabled.");
@@ -219,8 +217,8 @@ function handleKeyboardShortcut(e) {
         startTimer();
     } else if (!isTypingField) {
         if (code === "KeyR" || (
-                typeof key === "string" && key.toLowerCase() === "r"
-            )) {
+            typeof key === "string" && key.toLowerCase() === "r"
+        )) {
             e.preventDefault();
             resetTimer();
         }
