@@ -5,15 +5,18 @@
   --circle-color: #bf5239;
   --circle-mask-color: #e85a71;
   --button-hover-color: #90c0d1;
+  --focus-outline: #4db8ff;
+  --transition-speed: 150ms ease-in-out;
 }
 
 html {
   font-family: "Fira Sans", sans-serif;
-  font-size: 20px;
+  font-size: clamp(16px, 2.5vw, 20px);
   min-height: 100vh;
   color: var(--text-color);
   background-image: linear-gradient(-20deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
   background-size: cover;
+  background-attachment: fixed;
 }
 
 html.theme-light {
@@ -23,41 +26,93 @@ html.theme-light {
   --circle-color: #4c6ef5;
   --circle-mask-color: #74c0fc;
   --button-hover-color: #334155;
+  --focus-outline: #1d439f;
+}
+
+body {
+  margin: 0;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Skip to content link for keyboard navigation */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--text-color);
+  color: var(--bg-gradient-start);
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .skip-to-content {
+    transition: top var(--transition-speed);
+  }
 }
 
 h1 {
-  margin: 0 auto 10px auto;
+  margin: 0 auto 0.5rem auto;
   color: var(--text-color);
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  letter-spacing: -0.02em;
 }
 
 p {
   margin: 0;
+  line-height: 1.5;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .app-message {
-  height: 20px;
-  margin: 10px auto 20px auto;
+  height: auto;
+  min-height: 1.5rem;
+  margin: 0.5rem auto 0 auto;
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  color: var(--text-color);
 }
 
 .app-container {
-  width: 250px;
-  height: 420px;
-  margin: 40px auto;
+  width: 100%;
+  max-width: 320px;
+  margin: 2rem auto;
+  padding: 1.5rem;
   text-align: center;
-  border-radius: 5px;
-  padding: 20px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .app-container {
+    max-width: 400px;
+    margin: 3rem auto;
+    padding: 2rem;
+    gap: 2rem;
+  }
 }
 
 .app-circle {
   position: relative;
   margin: 0 auto;
-  width: 200px;
-  height: 200px;
+  width: clamp(140px, 50vw, 200px);
+  aspect-ratio: 1;
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -66,14 +121,16 @@ p {
 .circle-shape {
   pointer-events: none;
   z-index: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .semi-circle {
   position: absolute;
-  width: 100px;
-  height: 200px;
+  width: 50%;
+  height: 100%;
   box-sizing: border-box;
-  border: solid 6px;
+  border: clamp(4px, 3vw, 6px) solid;
 }
 
 .left-side {
@@ -81,19 +138,19 @@ p {
   left: 0;
   transform-origin: right center;
   transform: rotate(0deg);
-  border-top-left-radius: 100px;
-  border-bottom-left-radius: 100px;
+  border-top-left-radius: 100%;
+  border-bottom-left-radius: 100%;
   border-right: none;
   z-index: 1;
 }
 
 .right-side {
   top: 0;
-  left: 100px;
+  left: 50%;
   transform-origin: left center;
   transform: rotate(0deg);
-  border-top-right-radius: 100px;
-  border-bottom-right-radius: 100px;
+  border-top-right-radius: 100%;
+  border-bottom-right-radius: 100%;
   border-left: none;
 }
 
@@ -107,7 +164,7 @@ p {
 
 .app-counter-box {
   font-family: "Droid Sans Mono", monospace;
-  font-size: 2.2rem;
+  font-size: clamp(1.8rem, 8vw, 3.2rem);
   color: var(--text-color);
   z-index: 2;
   position: absolute;
@@ -116,22 +173,90 @@ p {
   transform: translate(-50%, -50%);
   line-height: 1;
   text-align: center;
+  font-weight: 600;
 }
 
 button {
-  font-size: 80%;
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
   text-transform: uppercase;
   border: none;
   background: none;
   outline: none;
   color: var(--text-color);
-}
-
-.button-row {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  min-height: 44px;
+  min-width: 44px;
   display: flex;
-  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: color var(--transition-speed), background-color var(--transition-speed);
+  position: relative;
 }
 
 button:hover {
   color: var(--button-hover-color);
+}
+
+button:focus {
+  outline: 2px solid var(--focus-outline);
+  outline-offset: 2px;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.button-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-theme {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.app-footer {
+  margin-top: auto;
+  padding: 1rem;
+  text-align: center;
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+kbd {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  padding: 0.2rem 0.4rem;
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+@media (max-width: 639px) {
+  button {
+    padding: 0.75rem 1.25rem;
+    min-height: 48px;
+    min-width: 48px;
+  }
+  
+  .btn-theme {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button {
+    transition: none;
+  }
+  
+  button:active {
+    transform: none;
+  }
 }
