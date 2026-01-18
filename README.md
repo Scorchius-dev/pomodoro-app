@@ -2,7 +2,7 @@
 
 A clean, accessible Pomodoro timer web application to boost productivity using the Pomodoro Technique.  Built with vanilla HTML, CSS, and JavaScript.
 
-![Pomodoro App Screenshot](screenshot.png)
+![Pomodoro App Screenshot](https://github.com/Scorchius-dev/pomodoro-app/blob/main/screenshots/screenshot.png)
 *Screenshot of the Pomodoro Timer in dark mode*
 
 ## 🌐 Live Demo
@@ -302,4 +302,5 @@ This project is deployed using GitHub Pages.
 ---
 
 **Made with ❤️ and ☕ using the Pomodoro Technique**
+
 
